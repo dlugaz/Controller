@@ -15,6 +15,7 @@
 #include "adc.h"
 #include "timer.h"
 
+
 //*****************************************************************************
 // PIN to PAD matrix
 //*****************************************************************************
@@ -308,3 +309,43 @@
 	    TimerEnable(uiTimerBase,uiTimer);
 
 	}
+
+	void SoftwarePWMStart()
+	{
+		//REMINDER: Make a global table of channels which one is configurated as what
+
+		//REMINDER: Make a global table with info of PWM frequency
+
+		/*Maybe do it as a structure? Struct Channel with info:
+		- channel no
+		- available configuration
+		- configuration
+		- Software PWM frequency
+		- PWM timer
+		- Set time constant
+
+		// There should be a function run with some frequency (1hz?) that would:
+		 * -
+		 * - Update channels per their configuration with checking if it is correct
+		 * 		(for each channel read configuration, check if this channel can be configured that way
+		 * 		(a table with a mask of available configs), then return error or execute one of the functions
+
+		//Check if channel is configurated as GPIOOutput
+
+		//Initialize given pin as GPIOOutput
+
+		//Change status variable to indicate that this pin output is configured as SoftwarePWM
+
+		//Set frequency		 */
+
+	}
+/*	// This function is to be executed at constant time task (system tick, task?)
+	void SoftwarePWM()
+	{
+		//REMINDER: Make a global table that would have information when was the last change of state for the channel (how many ticks ago)
+		// increase channel timer
+		//if timer value > set time then 1
+		 * if > frequency then 0, reset timer
+
+	}
+	}*/

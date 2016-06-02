@@ -23,7 +23,7 @@ $(GEN_CMDS__FLAG) \
 -l"libc.a" \
 -ldriverlib.a \
 -lsimplelink.a \
--lfree_rtos.a \
+-lti_rtos.a \
 
 -include ../makefile.init
 
@@ -146,7 +146,7 @@ all: Controller.out
 Controller.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -g --gcc --define=ccs --define=SL_PLATFORM_MULTI_THREADED --define=USE_FREERTOS --define=cc3200 --display_error_number --diag_warning=225 --diag_wrap=off -z -m"Controller.map" --heap_size=0x2000 --stack_size=0x1000 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" -i"C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/ccs/Release" -i"C:/ti/CC3200SDK_1.1.0/cc3200-sdk/simplelink/ccs/OS" -i"C:/ti/CC3200SDK_1.1.0/cc3200-sdk/oslib/ccs/free_rtos" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Controller_linkInfo.xml" --rom_model -o "Controller.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -g --gcc --define=ccs --define=SL_PLATFORM_MULTI_THREADED --define=USE_TIRTOS --define=cc3200 --display_error_number --diag_warning=225 --diag_wrap=off -z -m"Controller.map" --heap_size=0x2000 --stack_size=0x1000 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include" -i"C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/ccs/Release" -i"C:/ti/CC3200SDK_1.1.0/cc3200-sdk/simplelink/ccs/OS" -i"C:/ti/CC3200SDK_1.1.0/cc3200-sdk/oslib/ccs/ti_rtos" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="Controller_linkInfo.xml" --rom_model -o "Controller.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -159,7 +159,8 @@ Controller.bin: $(EXE_OUTPUTS)
 
 # Other Targets
 clean:
-	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
+	-$(RM) $(GEN_MISC_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_OPTS__QUOTED)$(GEN_CMDS__QUOTED)
+	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-$(RM) "bma222drv.pp" "device_status.pp" "gpio_if.pp" "i2c_if.pp" "iodriver.pp" "main.pp" "pinmux.pp" "smartconfig.pp" "startup_ccs.pp" "tmp006drv.pp" "uart_if.pp" 
 	-$(RM) "bma222drv.obj" "device_status.obj" "gpio_if.obj" "i2c_if.obj" "iodriver.obj" "main.obj" "pinmux.obj" "smartconfig.obj" "startup_ccs.obj" "tmp006drv.obj" "uart_if.obj" 
 	-@echo 'Finished clean'
