@@ -88,11 +88,12 @@
 // OS includes
 
 #include "osi.h"
-
+#include <ti/sysbios/hal/Timer.h>
 /* XDCtools Header files */
 #include <xdc/std.h>
 #include <xdc/cfg/global.h>
 #include <xdc/runtime/System.h>
+#include <xdc/runtime/Error.h>
 
 // Common interface includes
 #include "gpio_if.h"
@@ -118,6 +119,8 @@
 #define AUTO_CONNECTION_TIMEOUT_COUNT   50      /* 5 Sec */
 #define SL_STOP_TIMEOUT                 200
 
+
+
 typedef enum
 {
   LED_OFF = 0,
@@ -140,6 +143,10 @@ static unsigned char g_ucLEDStatus = LED_OFF;
 static unsigned long  g_ulStatus = 0;//SimpleLink Status
 static unsigned char  g_ucConnectionSSID[SSID_LEN_MAX+1]; //Connection SSID
 static unsigned char  g_ucConnectionBSSID[BSSID_LEN_MAX]; //Connection BSSID
+
+unsigned int timerinteruptnumber, load, PWMcount;
+Timer_Params timer0Params, timer1Params;
+Timer_Handle timer0, timer1;
 
 
 #if defined(ccs)
@@ -1068,6 +1075,18 @@ static void OOBTask(void *pvParameters)
             GPIO_IF_LedOff(MCU_RED_LED_GPIO);
             osi_Sleep(500);
         }*/
+    	//blink 1 led to signal work
+
+    	osi_Sleep(500);
+    	if (GPIO_ReadValue(PIN_04)) load+=5;
+    	if (GPIO_ReadValue(PIN_15)) load-=5;
+    	if (load > 100) load=100;
+    	UART_PRINT("Current load is %d\n",load);
+    	/*
+    	UART_PRINT("Infinite loop Timer value %d\n",Timer_getCount(timer0));
+    	UART_PRINT("This is this timer interupt number %d\n",timerinteruptnumber);*/
+
+
     }
 }
 
@@ -1147,14 +1166,30 @@ BoardInit(void)
     GPIO_Init(PIN_01,GPIO_DIR_MODE_OUT);
     //LED 3
     GPIO_Init(PIN_64,GPIO_DIR_MODE_OUT);
+    //Switch SW1
+    GPIO_Init(PIN_04,GPIO_DIR_MODE_IN);
+    //Switch SW2
+    GPIO_Init(PIN_15,GPIO_DIR_MODE_IN);
     // All LEDs Off
     GPIO_WriteValue(PIN_02,0);
     GPIO_WriteValue(PIN_01,0);
     GPIO_WriteValue(PIN_64,0);
+
+
 }
 
-Timer1ISR()
+void timer0isr(UArg arg0)
 {
+	if(GPIOPinRead(GPIOA1_BASE,GPIO_PIN_2)==0)GPIOPinWrite(GPIOA1_BASE, GPIO_PIN_2, 0XFF);
+	else GPIOPinWrite(GPIOA1_BASE, GPIO_PIN_2, 0);
+}
+
+void timer1isr(UArg arg0)
+{
+	PWMcount++;
+	if (PWMcount < load) GPIOPinWrite(GPIOA1_BASE, GPIO_PIN_3, 0xFF);
+	else GPIOPinWrite(GPIOA1_BASE, GPIO_PIN_3, 0);
+	if (PWMcount > 100) PWMcount=0;
 
 }
 
@@ -1215,21 +1250,48 @@ void main()
         ERR_PRINT(lRetVal);
         LOOP_FOREVER();
     }    
+    //
+    // Initialize timer0 for blinking
+    UART_PRINT("Timer is configured\n");
+    Error_Block eb;
+    Error_init(&eb);
+
+    Timer_Params_init(&timer0Params);
+    timer0Params.period=2000000;
+    timer0Params.periodType=Timer_PeriodType_MICROSECS;
+    UART_PRINT("Timer is initialized\n");
+    timer0 = Timer_create (Timer_ANY, timer0isr, &timer0Params, &eb);
+    if(timer0==NULL) UART_PRINT ("Timer initialization failed");
+
+    Timer_start(timer0);
+    UART_PRINT("Timer period %d\n",Timer_getPeriod(timer0));
+    UART_PRINT("Timer value %d\n",Timer_getCount(timer0));
+
+    //Initialize timer1 for PWM
+    Timer_Params_init(&timer1Params);
+    timer1Params.period=100;
+    timer1Params.periodType=Timer_PeriodType_MICROSECS;
+    UART_PRINT("Timer is initialized\n");
+    timer1 = Timer_create (Timer_ANY, timer1isr, &timer1Params, &eb);
+    if(timer1==NULL) UART_PRINT ("Timer initialization failed");
+
+
+    Timer_start(timer1);
+
+    //Initialize Software PWM
+    load =10;
+    PWMcount=0;
 
     //
     // Start OS Scheduler
     //
     osi_start();
 
+
     while (1)
     {
 
-    	//blink 1 led to signal work
-    	/*
-    	GPIOPinWrite(GPIOA1_BASE, GPIO_PIN_2, 0XFF);
-    	osi_Sleep(1000);
-    	GPIOPinWrite(GPIOA1_BASE, GPIO_PIN_2, 0);
-    	*/
+
     }
 
 }

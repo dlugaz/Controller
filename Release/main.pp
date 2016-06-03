@@ -33,6 +33,7 @@ main.obj: C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/rom_patch.h
 main.obj: C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/prcm.h
 main.obj: C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/pin.h
 main.obj: C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/gpio.h
+main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/hal/Timer.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/std.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stdarg.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stddef.h
@@ -40,9 +41,6 @@ main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/t
 main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/targets/arm/elf/M4.h
 main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/targets/std.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stdint.h
-main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/cfg/global.h
-main.obj: C:/Users/kdluzynski/workspace_v6_1/Controller/Release/configPkg/package/cfg/app_pem4.h
-main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/hal/Timer.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/xdc.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types__prologue.h
@@ -96,6 +94,8 @@ main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IInstance.h
 main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/interfaces/ITimer.h
 main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/hal/package/Timer_TimerProxy.h
+main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/cfg/global.h
+main.obj: C:/Users/kdluzynski/workspace_v6_1/Controller/Release/configPkg/package/cfg/app_pem4.h
 main.obj: C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/knl/Task.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IInstance.h
@@ -186,6 +186,7 @@ main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IInstance.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IGateProvider.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/package/System_SupportProxy.h
 main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/package/System_Module_GateProxy.h
+main.obj: C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Error.h
 main.obj: C:/ti/CC3200SDK_1.1.0/cc3200-sdk/example/common/gpio_if.h
 main.obj: C:/ti/CC3200SDK_1.1.0/cc3200-sdk/example/common/uart_if.h
 main.obj: C:/ti/CC3200SDK_1.1.0/cc3200-sdk/example/common/i2c_if.h
@@ -230,6 +231,7 @@ C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/rom_patch.h:
 C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/prcm.h: 
 C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/pin.h: 
 C:/ti/CC3200SDK_1.1.0/cc3200-sdk/driverlib/gpio.h: 
+C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/hal/Timer.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/std.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stdarg.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stddef.h: 
@@ -237,9 +239,6 @@ C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/targets/
 C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/targets/arm/elf/M4.h: 
 C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/targets/std.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_5.2.2/include/stdint.h: 
-C:/ti/xdctools_3_31_01_33_core/packages/xdc/cfg/global.h: 
-C:/Users/kdluzynski/workspace_v6_1/Controller/Release/configPkg/package/cfg/app_pem4.h: 
-C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/hal/Timer.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/xdc.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types__prologue.h: 
@@ -293,6 +292,8 @@ C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types.h:
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IInstance.h: 
 C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/interfaces/ITimer.h: 
 C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/hal/package/Timer_TimerProxy.h: 
+C:/ti/xdctools_3_31_01_33_core/packages/xdc/cfg/global.h: 
+C:/Users/kdluzynski/workspace_v6_1/Controller/Release/configPkg/package/cfg/app_pem4.h: 
 C:/ti/tirtos_simplelink_2_13_01_09/products/bios_6_42_00_08/packages/ti/sysbios/knl/Task.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IInstance.h: 
@@ -383,6 +384,7 @@ C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IInstance.h:
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/IGateProvider.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/package/System_SupportProxy.h: 
 C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
+C:/ti/xdctools_3_31_01_33_core/packages/xdc/runtime/Error.h: 
 C:/ti/CC3200SDK_1.1.0/cc3200-sdk/example/common/gpio_if.h: 
 C:/ti/CC3200SDK_1.1.0/cc3200-sdk/example/common/uart_if.h: 
 C:/ti/CC3200SDK_1.1.0/cc3200-sdk/example/common/i2c_if.h: 
